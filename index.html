@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="bootstrap.min.css">
+    <title>On this day</title>
+</head>
+<body>
+    
+    <div class="container">
+        <div class="row mt-5">
+            <div class="col-md-6 p-5 text-white bg-danger card m-auto">
+                
+                <p>Enter the month and date you want to see a fact or history associated with it in the format mm/dd</p>
+                <input type="text" class="form-control", id="dateInput"><br>
+                <button class="submit bg-primary" id="submit">Submit</button>
+                <div class="card-body text-white" id="outputDiv">
+                    <h4>On the day...</h4>
+                    <p id="outputText" class="text-white"></p>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+    <script>
+        const dateInput = document.getElementById('dateInput');
+        const submit = document.getElementById('submit')
+        const outputText = document.getElementById('outputText')
+        submit.addEventListener('click', onSubmit)
+        
+        const outputDiv = document.getElementById('outputDiv')
+        outputDiv.style.display = "none"
+        function onSubmit(){
+            outputDiv.style.display = "block"
+            dateValue = dateInput.value
+            url = `http://numbersapi.com/${dateValue}/date`
+            fetch(url)
+            .then(content => content.text())
+            .then(data => {
+                outputText.innerText = data;
+            })
+        }
+    </script>
+
+   
+</body>
+</html> 
