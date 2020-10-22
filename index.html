@@ -34,7 +34,8 @@
         function onSubmit(){
             outputDiv.style.display = "block"
             dateValue = dateInput.value
-            url = `http://numbersapi.com/${dateValue}/date`
+            proxy = "https://cors-anywhere.herokuapp.com/"
+            url = `${proxy}http://numbersapi.com/${dateValue}/date`
             fetch(url)
             .then(content => content.text())
             .then(data => {
